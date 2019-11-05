@@ -14,7 +14,7 @@ do
   clone_repo $line
 done < "$input"
 
-mkdir $STARTDIR/_bundles
+[ -d $STARTDIR/_bundles ] || mkdir $STARTDIR/_bundles
 
 update_repos(){
 echo "Entering $1 directory..."
@@ -24,10 +24,10 @@ git fetch --all
 echo "Fetching tags..."
 git fetch --tags
 echo "Exporting git bundle to $STARTDIR/_bundles/$1.bundle..."
-git bundle create ../_bundles/$1.bundle --all
+git bundle create $STARTDIR/_bundles/$1.bundle --all
 }
 
-dirs=$(ls -d */ -1 | sed 's/\///' | sed 's/_bundles//')
+dirs=$(ls -d */ -1 | sed 's/\///' | sed 's/"_bundles"//')
 
 for i in $dirs
 do
