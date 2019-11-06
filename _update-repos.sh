@@ -10,11 +10,6 @@ if [ -d $STARTDIR/_bundles ]
     mkdir $STARTDIR/_bundles
   fi
 
-clone_repo(){
-git clone $1 --mirror
-}
-
-
 input="$STARTDIR/_repo_source_list.txt"
 while IFS= read -r line
 do
@@ -28,15 +23,11 @@ do
     git -C $REPOFOLDER fetch --all --prune
   else
     echo "Cloning $REPO"
-    clone_repo $line --mirror
+    git clone $line --mirror
 fi
 done < "$input"
 
 update_repos(){
-# echo "Entering $1 directory..."
-# cd $STARTDIR/$1
-# echo "Fetching updates..."
-# git -C $STARTDIR/$1 fetch --all
 REPO=$( echo $1 | sed 's/\.git//g')
 echo "Exporting git bundle to $STARTDIR/_bundles/$REPO.bundle..."
 git -C $STARTDIR/$1 bundle create $STARTDIR/_bundles/$REPO.bundle --tags --branches --since=10.days
@@ -49,4 +40,3 @@ do
   echo "Creating bundle from $i repo..."
   update_repos $i
 done
-
