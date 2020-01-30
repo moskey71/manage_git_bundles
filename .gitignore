@@ -1,3 +1,5 @@
-# ignore _bundles folder
+# ignore data folders
 _bundles
+_mirrors
+_reposource
 
