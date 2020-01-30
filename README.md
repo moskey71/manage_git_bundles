@@ -1,13 +1,23 @@
-Sample configuration
+# Summary
+This tool is used to create git bundles which can easily be pushed to a private git server.
 
-Source:
-1) Clone the repo and enter the source directory.
-2) Add the repos you want to bundle into the _repo_source_list.txt file
-3) run _create-git-bundles.sh
-4) A _bundles folder will be created.  Transfer the _bundle folder and _repo_source_list.txt file to the destination.
+## Usage
 
-Destination:
-1) Clone the repo and enter the destination directory.
-2) Place the _bundle folder into the destination folder
-3) Add the destination repos into the _repo_destination_list.txt file.  Currently an underscore is used for breaking up names.  Your destination repo name should look like so: <sourceaccount>_<reponame>.git
-4) Run _update-mirrors.sh
+### Creating the git bundles:
+
+* Clone the repo and enter the source directory.
+* Add the repos you want to bundle into the _\_repo\_source\_list.txt_ file
+* Run _\_create-git-bundles.sh_
+* A _\_bundles_ folder will be created.  Transfer the _\_bundles_ folder and _\_repo\_source\_list.txt_ file to the destination.
+
+### Deploying the git bundles:
+
+* Clone the repo and enter the destination directory.
+* Place the _\_bundle_ folder into the destination folder
+* Add the destination repos into the _\_repo\_destination\_list.txt_ file.
+* **NOTE:** Currently an underscore is used for breaking up names.  Your destination repo name should look like:  `https://gitserver.com/moskey71/<sourceaccount>_<reponame>.git` or `git@gitserver.com:moskey71/<sourceaccount>_<reponame>.git`  For example, a source of `https://github.com/hashicorp/terraform.git` would have a destination format like `https://gitserver.com/moskey71/hashicorp_terraform.git`
+or
+`git@gitserver.com:moskey71/hashicorp_terraform.git`
+Personally, I like to keep my mirrors organized together, so I use a group.  Using SSH, it would like like `git@gitserver.com:moskey71/mirror-groups/hashicorp_terraform.git`
+* Run _\_update-mirrors.sh_
+
