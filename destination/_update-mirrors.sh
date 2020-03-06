@@ -39,7 +39,7 @@ git -C $REPODIR push origin master
 git -C $REPODIR push origin master --tags --force
 }
 
-input="$STARTDIR/_repo_source_list.txt"
+input="$STARTDIR/_repo_destination_list.txt"
 while IFS= read -r line
 do
   REPO=$(basename $line .git)
