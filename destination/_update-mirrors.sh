@@ -7,7 +7,6 @@ BUNDLEDIR=$STARTDIR/_bundles
 if [ -d $STARTDIR/_bundles ]
   then
     echo "_bundles folder already exists.  Skipping folder creation."
-    rm -rf $STARTDIR/_bundles/*
   else
     echo "Creating _bundles folder..."
     mkdir $STARTDIR/_bundles
